@@ -1,9 +1,8 @@
-const mongoose = require("mongoose");
 const app = require("./app");
+const mongoose = require("mongoose");
+require("dotenv").config();
 
-const { DB_HOST, PORT = 3000 } = process.env;
-
-mongoose.set("strictQuery", false);
+const { DB_HOST, PORT = 3030 } = process.env;
 mongoose
   .connect(DB_HOST)
   .then(() => {
@@ -11,6 +10,6 @@ mongoose
     app.listen(PORT);
   })
   .catch((error) => {
-    console.error("Database connection error:", error);
+    console.log(error.message);
     process.exit(1);
   });

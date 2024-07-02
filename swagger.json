@@ -1,0 +1,308 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Amazon-advertise Web API - OpenAPI 5.0",
+    "description": "API for App \"Amazon-advertise\" ",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "3041804428puh@gmail.com"
+    },
+    "version": "1.5.0"
+  },
+  "servers": [
+    {
+      "url": "https://amazon-node-mongodb.vercel.app/api"
+    },
+    {
+      "url": "http://localhost:3030/api"
+    }
+  ],
+
+  "tags": [
+    {
+      "name": "Sources",
+      "description": "all sources"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["Sources"],
+        "summary": "Get all sources",
+        "operationId": "getAll",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Source"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/:id/": {
+      "get": {
+        "tags": ["Sources"],
+        "summary": "Get source by id",
+        "operationId": "getById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "source id",
+            "example": "667d280746eb980b0c20d524"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceItem"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+
+    "/add/": {
+      "post": {
+        "tags": ["Sources"],
+        "consumes": ["multipart/form-data"],
+        "summary": "Add new source",
+        "operationId": "add",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  " name",
+                  "spend",
+                  "conversion",
+                  "session",
+                  "color"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Linkedin"
+                  },
+                  "spend": {
+                    "type": "number",
+                    "example": 3250
+                  },
+                  " conversion": {
+                    "type": "number",
+                    "example": 512
+                  },
+                  "session": {
+                    "type": "number",
+                    "example": 4700
+                  },
+                  "color": {
+                    "type": "string",
+                    "example": "green"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceItem"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/remove/:id": {
+      "delete": {
+        "tags": ["Sources"],
+        "summary": "Remove source",
+        "operationId": "removeById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "source id",
+            "schema": {
+              "type": "string",
+              "example": "5f9f8b4b1c9d440000d3b3b5"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/update/:id": {
+      "put": {
+        "tags": ["Sources"],
+        "summary": "Update source",
+        "operationId": "updateById",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Linkedin"
+                  },
+                  "spend": {
+                    "type": "number",
+                    "example": 3250
+                  },
+                  " conversion": {
+                    "type": "number",
+                    "example": 512
+                  },
+                  "session": {
+                    "type": "number",
+                    "example": 4700
+                  },
+                  "color": {
+                    "type": "string",
+                    "example": "green"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Linkedin"
+                    },
+                    "spend": {
+                      "type": "number",
+                      "example": 3250
+                    },
+                    " conversion": {
+                      "type": "number",
+                      "example": 512
+                    },
+                    "session": {
+                      "type": "number",
+                      "example": 4700
+                    },
+                    "color": {
+                      "type": "string",
+                      "example": "green"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Source": {
+        "type": "object",
+        "properties": {
+          "List of Sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sources"
+            }
+          }
+        }
+      },
+      "SourceItem": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+
+            "example": "639b6de9ff77d221f190c520"
+          },
+          "name": {
+            "type": "string",
+            "example": "Linkedin"
+          },
+          "spend": {
+            "type": "number",
+            "example": 3250
+          },
+          " conversion": {
+            "type": "number",
+            "example": 512
+          },
+          "session": {
+            "type": "number",
+            "example": 4700
+          },
+          "color": {
+            "type": "string",
+            "example": "green"
+          }
+        }
+      }
+    }
+  }
+}
