@@ -11,7 +11,7 @@
   },
   "servers": [
     {
-      "url": "https://amazon-node-mongodb.vercel.app/api"
+      "url": "https://amazon-node-mongodb.onrender.com/api/sources"
     },
     {
       "url": "http://localhost:3030/api"

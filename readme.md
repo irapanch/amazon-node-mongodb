@@ -8,7 +8,7 @@
 
 ## Документація
 
-Кожен ендпоїнт веб серверу розписаний на [Swagger(openAPI)](https://amazon-node-mongodb.vercel.app/api-docs/#/)
+Кожен ендпоїнт веб серверу розписаний на [Swagger(openAPI)](https://amazon-node-mongodb.onrender.com/api-docs/#/)
 
 ## Вимоги
 
