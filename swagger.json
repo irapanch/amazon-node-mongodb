@@ -36,9 +36,8 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Source"
+                    "$ref": "#/components/schemas/SourceItem"
                   }
                 }
               }
@@ -53,7 +52,7 @@
         }
       }
     },
-    "/:id/": {
+    "/{id}/": {
       "get": {
         "tags": ["Sources"],
         "summary": "Get source by id",
@@ -63,7 +62,12 @@
             "in": "path",
             "name": "id",
             "description": "source id",
-            "example": "667d280746eb980b0c20d524"
+            "example": "667d280746eb980b0c20d524",
+            "schema": {
+              "type": "string",
+              "example": "5f9f8b4b1c9d440000d3b3b5"
+            },
+            "required": true
           }
         ],
         "responses": {
@@ -80,7 +84,6 @@
           "400": {
             "description": "Bad request"
           },
-
           "404": {
             "description": "Not found"
           }
@@ -91,7 +94,6 @@
     "/add/": {
       "post": {
         "tags": ["Sources"],
-        "consumes": ["multipart/form-data"],
         "summary": "Add new source",
         "operationId": "add",
         "requestBody": {
@@ -99,13 +101,7 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "required": [
-                  " name",
-                  "spend",
-                  "conversion",
-                  "session",
-                  "color"
-                ],
+                "required": ["name", "spend", "conversion", "session", "color"],
                 "properties": {
                   "name": {
                     "type": "string",
@@ -115,7 +111,7 @@
                     "type": "number",
                     "example": 3250
                   },
-                  " conversion": {
+                  "conversion": {
                     "type": "number",
                     "example": 512
                   },
@@ -154,7 +150,7 @@
         }
       }
     },
-    "/remove/:id": {
+    "/remove/{id}": {
       "delete": {
         "tags": ["Sources"],
         "summary": "Remove source",
@@ -167,9 +163,11 @@
             "schema": {
               "type": "string",
               "example": "5f9f8b4b1c9d440000d3b3b5"
-            }
+            },
+            "required": true
           }
         ],
+
         "responses": {
           "204": {
             "description": "successful operation"
@@ -183,7 +181,7 @@
         }
       }
     },
-    "/update/:id": {
+    "/update/": {
       "put": {
         "tags": ["Sources"],
         "summary": "Update source",
@@ -202,7 +200,7 @@
                     "type": "number",
                     "example": 3250
                   },
-                  " conversion": {
+                  "conversion": {
                     "type": "number",
                     "example": 512
                   },
@@ -218,7 +216,7 @@
               }
             }
           },
-          "required": false
+          "required": true
         },
         "responses": {
           "200": {
@@ -262,17 +260,6 @@
   },
   "components": {
     "schemas": {
-      "Source": {
-        "type": "object",
-        "properties": {
-          "List of Sources": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Sources"
-            }
-          }
-        }
-      },
       "SourceItem": {
         "type": "object",
         "properties": {
