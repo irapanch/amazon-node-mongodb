@@ -9,6 +9,8 @@
 ## Документація
 
 Кожен ендпоїнт веб серверу розписаний на [Swagger(openAPI)](https://amazon-node-mongodb.onrender.com/api-docs/#/)
+![2024-08-14_17-53](https://github.com/user-attachments/assets/79eb76c9-fd16-45e4-a789-f8107a145079)
+
 
 ## Вимоги
 
